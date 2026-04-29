@@ -1,0 +1,13 @@
+[project]
+name = "event2sector"
+version = "0.1.0"
+description = "隔夜新闻/政策/商品价格/海外市场事件 → A股板块映射 → 相关个股 → 盘前报告"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+event2sector = "event2sector.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"

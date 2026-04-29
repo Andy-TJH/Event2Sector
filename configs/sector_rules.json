@@ -1,0 +1,103 @@
+{
+  "rules": [
+    {
+      "id": "oil_price_up",
+      "keywords": ["原油", "油价", "OPEC", "石油", "布伦特"],
+      "condition": "上涨|上行|走高|飙升|大涨|反弹|减产",
+      "sectors": [
+        {"name": "石油石化", "direction": "利好", "reason": "油价上涨提升石化企业盈利预期"},
+        {"name": "煤炭", "direction": "利好", "reason": "能源价格联动上行"},
+        {"name": "航空运输", "direction": "利空", "reason": "燃油成本上升压缩利润"}
+      ]
+    },
+    {
+      "id": "oil_price_down",
+      "keywords": ["原油", "油价", "OPEC", "石油", "布伦特"],
+      "condition": "下跌|下行|走低|暴跌|大跌|回落|增产",
+      "sectors": [
+        {"name": "航空运输", "direction": "利好", "reason": "燃油成本下降改善利润"},
+        {"name": "石油石化", "direction": "利空", "reason": "油价下跌压缩石化企业盈利"},
+        {"name": "化工", "direction": "利好", "reason": "原材料成本下降"}
+      ]
+    },
+    {
+      "id": "fed_rate_hike",
+      "keywords": ["美联储", "加息", "联邦基金利率", "Fed"],
+      "condition": "加息|鹰派|收紧|上调利率",
+      "sectors": [
+        {"name": "银行", "direction": "中性偏空", "reason": "全球流动性收紧"},
+        {"name": "有色金属", "direction": "利空", "reason": "美元走强压制金属价格"},
+        {"name": "黄金", "direction": "利空", "reason": "实际利率上行压制金价"}
+      ]
+    },
+    {
+      "id": "fed_rate_cut",
+      "keywords": ["美联储", "降息", "联邦基金利率", "Fed"],
+      "condition": "降息|鸽派|宽松|下调利率",
+      "sectors": [
+        {"name": "有色金属", "direction": "利好", "reason": "美元走弱推升金属价格"},
+        {"name": "黄金", "direction": "利好", "reason": "实际利率下行利好金价"},
+        {"name": "科技成长", "direction": "利好", "reason": "流动性宽松利好成长股估值"}
+      ]
+    },
+    {
+      "id": "chip_policy",
+      "keywords": ["芯片", "半导体", "光刻机", "晶圆", "EDA", "制裁", "禁令"],
+      "condition": "国产替代|自主可控|制裁|禁令|突破|量产",
+      "sectors": [
+        {"name": "半导体", "direction": "利好", "reason": "国产替代加速推进"},
+        {"name": "电子元器件", "direction": "利好", "reason": "产业链受益"},
+        {"name": "信创", "direction": "利好", "reason": "自主可控需求提升"}
+      ]
+    },
+    {
+      "id": "ai_breakthrough",
+      "keywords": ["AI", "人工智能", "大模型", "ChatGPT", "算力", "GPU", "英伟达", "NVIDIA"],
+      "condition": "突破|发布|增长|需求|订单|扩产",
+      "sectors": [
+        {"name": "人工智能", "direction": "利好", "reason": "AI产业趋势加速"},
+        {"name": "算力基础设施", "direction": "利好", "reason": "算力需求持续增长"},
+        {"name": "光模块", "direction": "利好", "reason": "数据中心互联需求提升"}
+      ]
+    },
+    {
+      "id": "real_estate_policy",
+      "keywords": ["房地产", "楼市", "房贷", "限购", "公积金", "房价"],
+      "condition": "放松|刺激|降低|取消限购|利好|支持",
+      "sectors": [
+        {"name": "房地产", "direction": "利好", "reason": "政策放松改善行业预期"},
+        {"name": "建材", "direction": "利好", "reason": "地产链需求回暖"},
+        {"name": "家电", "direction": "利好", "reason": "竣工交付带动家电需求"}
+      ]
+    },
+    {
+      "id": "gold_price_up",
+      "keywords": ["黄金", "金价", "避险"],
+      "condition": "上涨|走高|新高|飙升|避险升温",
+      "sectors": [
+        {"name": "黄金", "direction": "利好", "reason": "金价上涨直接提升黄金股盈利"},
+        {"name": "贵金属", "direction": "利好", "reason": "贵金属板块联动"}
+      ]
+    },
+    {
+      "id": "new_energy_vehicle",
+      "keywords": ["新能源汽车", "电动车", "锂电池", "充电桩", "特斯拉"],
+      "condition": "销量|增长|补贴|政策支持|突破",
+      "sectors": [
+        {"name": "新能源汽车", "direction": "利好", "reason": "行业景气度提升"},
+        {"name": "锂电池", "direction": "利好", "reason": "动力电池需求增长"},
+        {"name": "充电桩", "direction": "利好", "reason": "基础设施配套需求"}
+      ]
+    },
+    {
+      "id": "usd_cny",
+      "keywords": ["人民币", "汇率", "美元兑人民币", "外汇"],
+      "condition": "贬值|走弱|下跌|破7",
+      "sectors": [
+        {"name": "纺织服装", "direction": "利好", "reason": "出口企业汇兑收益"},
+        {"name": "家电", "direction": "利好", "reason": "出口竞争力提升"},
+        {"name": "航空运输", "direction": "利空", "reason": "美元负债成本上升"}
+      ]
+    }
+  ]
+}
