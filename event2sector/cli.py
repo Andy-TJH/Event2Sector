@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -46,12 +45,12 @@ def run_pipeline(
     # 4. 生成报告
     date_str = report_date or datetime.now().strftime("%Y-%m-%d")
     report = DailyReport(
-        date=date_str,
-        generated_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        news_items=news_items,
-        events=events,
-        sector_impacts=sector_impacts,
+        report_date=date_str,
+        news_count=len(news_items),
+        event_count=len(events),
+        sectors=sector_impacts,
         stock_hits=stock_hits,
+        risk_notes=[],
     )
     generator = MarkdownReportGenerator()
     filepath = generator.save(report, output_dir)
@@ -59,7 +58,7 @@ def run_pipeline(
     return filepath
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Event2Sector: 隔夜事件 → A股板块映射 → 盘前报告"
     )

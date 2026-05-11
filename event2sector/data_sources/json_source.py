@@ -11,16 +11,18 @@ from event2sector.models import NewsItem
 def load_from_json(path: str | Path) -> list[NewsItem]:
     """从 JSON 文件读取新闻列表。
 
-    JSON 格式:
+    JSON 格式（字段说明见 models.NewsItem）:
     [
       {
         "id": "...",
+        "source": "...",
         "title": "...",
         "content": "...",
-        "source": "...",
-        "published_at": "...",
-        "category": "...",
-        "url": ""
+        "summary": "...",        # 可选
+        "url": "...",            # 可选
+        "publish_time": "...",   # 可选，ISO 8601
+        "language": "zh",        # 可选，默认 zh
+        "region": "CN"           # 可选，默认 CN
       }
     ]
     """
@@ -33,12 +35,15 @@ def load_from_json(path: str | Path) -> list[NewsItem]:
         items.append(
             NewsItem(
                 id=entry["id"],
-                title=entry["title"],
-                content=entry["content"],
                 source=entry.get("source", ""),
-                published_at=entry.get("published_at", ""),
-                category=entry.get("category", ""),
+                title=entry["title"],
+                content=entry.get("content", ""),
+                summary=entry.get("summary", ""),
                 url=entry.get("url", ""),
+                # 兼容旧字段名 published_at
+                publish_time=entry.get("publish_time") or entry.get("published_at", ""),
+                language=entry.get("language", "zh"),
+                region=entry.get("region", "CN"),
             )
         )
     return items

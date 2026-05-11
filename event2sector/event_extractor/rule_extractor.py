@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import json
 import re
+import uuid
 from pathlib import Path
 
-from event2sector.models import Event, NewsItem
+from event2sector.models import Event, EventLevel, NewsItem
 
 
 class RuleBasedExtractor:
@@ -31,13 +32,21 @@ class RuleBasedExtractor:
                 matched_cond = re.findall(condition_pattern, text) if condition_pattern else []
                 if not matched_cond:
                     continue
+
+                reasoning = (
+                    f"命中关键词: {', '.join(matched_kw)}；"
+                    f"触发条件: {', '.join(set(matched_cond))}"
+                )
                 events.append(
                     Event(
+                        event_id=str(uuid.uuid4()),
                         news_id=news.id,
-                        rule_id=rule["id"],
-                        title=news.title,
-                        matched_keywords=matched_kw,
-                        matched_conditions=list(set(matched_cond)),
+                        event_type=rule["id"],
+                        event_level=EventLevel.MEDIUM,
+                        entities=matched_kw,
+                        keywords=matched_kw,
+                        confidence=1.0,
+                        reasoning=reasoning,
                     )
                 )
         return events
